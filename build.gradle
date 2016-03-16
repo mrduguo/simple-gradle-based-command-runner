@@ -1,0 +1,9 @@
+apply plugin: 'buildscript'
+
+/** Sample Build Commands
+
+ ./gradlew bld_stats
+
+ ./gradlew bld_package_as_zip
+
+ */
