@@ -9,11 +9,13 @@ class BldPackageAsZipTask extends Zip {
     BldPackageAsZipTask(){
         from(project.projectDir)
         include(
+                'README**',
                 'gradle/**',
                 'gradle**',
                 'build.gradle',
                 'buildSrc/build.gradle',
                 'buildSrc/src/**',
+                'src/**',
         )
         zipFile=new File(project.buildDir,"distributions/${project.projectDir.name}-${new Date().format('yyyyMMdd')}.zip")
         setArchiveName(zipFile.name)
