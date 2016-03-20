@@ -7,7 +7,7 @@ class ProcessRunner {
     String cmd
     String[] cmds
     File dir
-    long timeoutInMilliSeconds = 10*60*1000 // 10 minutes
+    long timeoutInMilliSeconds = Long.MAX_VALUE
     def output = new StringBuilder()
     def logOutput =true
     Process process
@@ -70,13 +70,12 @@ class ProcessRunner {
         process = cmd.execute((String[]) null, dir)
     }
 
-    def initCmd() {
+    File initCmd() {
         def cmdFile
         if (cmds) {
             cmdFile = File.createTempFile('cmd-', '.sh')
             cmdFile.write(cmds.join('\n'))
             cmd = "bash $cmdFile.absolutePath"
-            cmdFile
             println("executing commands: $cmd\n${cmdFile.text}\n\n")
         }else{
             logCommand()
